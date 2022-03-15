@@ -13,7 +13,7 @@ const ShowToDo = () => {
     hour: "numeric",
     minute: "numeric",
   };
-  console.log(todos);
+
   return (
     <div>
       {/* show data in tabular form */}
@@ -22,7 +22,7 @@ const ShowToDo = () => {
           <tr>
             <th>ID</th>
             <th>Text</th>
-            <th>Date Of Compleation</th>
+            <th>Date Of Completion</th>
             <th>Completed</th>
             <th>Delete</th>
           </tr>
