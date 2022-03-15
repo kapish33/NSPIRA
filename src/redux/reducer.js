@@ -1,4 +1,9 @@
-import { DELETE_TODO, TOGGLE_TODO, ADD_TODO } from "./actionTypes";
+import {
+  DELETE_TODO,
+  TOGGLE_TODO,
+  ADD_TODO,
+  DELETE_COMPLEATED_TODOS,
+} from "./actionTypes";
 
 const init = { todos: [] };
 export const reducer = (state = init, { type, payload }) => {
@@ -26,6 +31,12 @@ export const reducer = (state = init, { type, payload }) => {
         ...state,
         todos: state.todos.filter((todo) => todo.id !== payload),
       };
+    case DELETE_COMPLEATED_TODOS:
+      return {
+        ...state,
+        todos: state.todos.filter((todo) => !todo.completed),
+      };
+
     default:
       return state;
   }

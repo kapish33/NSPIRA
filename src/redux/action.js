@@ -1,4 +1,9 @@
-import { DELETE_TODO, TOGGLE_TODO, ADD_TODO } from "./actionTypes";
+import {
+  DELETE_TODO,
+  TOGGLE_TODO,
+  ADD_TODO,
+  DELETE_COMPLEATED_TODOS,
+} from "./actionTypes";
 
 export const addTodo = (payload) => {
   return {
@@ -16,5 +21,11 @@ export const deleteTodo = (payload) => {
   return {
     type: DELETE_TODO,
     payload,
+  };
+};
+
+const deleteCompletedTodos = () => {
+  return {
+    type: DELETE_COMPLEATED_TODOS,
   };
 };

@@ -1,9 +1,10 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { DELETE_TODO } from "../redux/actionTypes";
+import { useDispatch, useSelector } from "react-redux";
+import { DELETE_TODO, TOGGLE_TODO } from "../redux/actionTypes";
 
 const ShowToDo = () => {
   const todos = useSelector((state) => state.todos);
+  const dispatch = useDispatch();
   var options = {
     weekday: "long",
     year: "numeric",
@@ -23,6 +24,7 @@ const ShowToDo = () => {
             <th>Text</th>
             <th>Date Of Compleation</th>
             <th>Completed</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -37,11 +39,19 @@ const ShowToDo = () => {
                 <td>
                   <button
                     onClick={() => {
-                      console.log(todo.id);
-                      dispatchEvent({ type: DELETE_TODO, payload: todo.id });
+                      dispatch({ type: TOGGLE_TODO, payload: todo.id });
                     }}
                   >
                     {todo.completed ? "Done" : "Not Done"}
+                  </button>
+                </td>
+                <td>
+                  <button
+                    onClick={() => {
+                      dispatch({ type: DELETE_TODO, payload: todo.id });
+                    }}
+                  >
+                    Delete
                   </button>
                 </td>
               </tr>

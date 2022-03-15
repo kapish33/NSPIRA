@@ -7,16 +7,19 @@ import "./AddToDo.css";
 import { Button } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { nanoid } from "nanoid";
-import { ADD_TODO } from "../redux/actionTypes";
+import { ADD_TODO, DELETE_COMPLEATED_TODOS } from "../redux/actionTypes";
 
 const AddToDo = () => {
   const dispatch = useDispatch();
 
   const [value, setValue] = React.useState(new Date());
   const [text, setText] = React.useState("");
-  //   console.log(value, text);
+
   const hadelClick = () => {
-    console.log(value, text);
+    if (text.trim() === "") {
+      alert("Please enter text");
+      return;
+    }
     const newTodo = {
       id: nanoid(),
       text,
@@ -24,6 +27,7 @@ const AddToDo = () => {
       completed: false,
     };
     dispatch({ type: ADD_TODO, payload: newTodo });
+    setText("");
   };
   return (
     <div>
@@ -48,7 +52,16 @@ const AddToDo = () => {
             maxTime={new Date(0, 0, 0, 18, 45)}
           />
           <Button onClick={hadelClick} variant="contained" color="success">
-            Success
+            Add ToDo
+          </Button>
+          <Button
+            onClick={() => {
+              dispatch({ type: DELETE_COMPLEATED_TODOS, payload: null });
+            }}
+            variant="contained"
+            color="success"
+          >
+            Remove All Compleated Task
           </Button>
         </LocalizationProvider>
       </div>
